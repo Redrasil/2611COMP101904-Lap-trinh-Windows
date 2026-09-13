@@ -1,4 +1,4 @@
-# Lab 01 - Tên bài Lab của bạn (Ví dụ: Làm quen với WinForms)
+# Lab 01 - Chương trình Thông tin cá nhân
 
 ## Thông tin sinh viên
 - Họ tên: Hoàng Dương Phúc Quang
@@ -6,11 +6,12 @@
 - Lớp: 49.01.TOAN.SN
 
 ## Mô tả
-(Viết ngắn gọn ứng dụng này dùng để làm gì. Ví dụ: Ứng dụng WinForms cơ bản hiển thị lời chào.)
+Ứng dụng WinForms cơ bản cho phép người dùng nhập và hiển thị thông tin cá nhân.
 
 ## Chức năng
-- Tính năng 1...
-- Tính năng 2...
+- Nhập thông tin cá nhân: Họ tên, năm sinh.
+- Chọn giới tính (RadioButton) và chọn Khoa (ComboBox).
+- Nút thoát chương trình.
 
 ## Cách chạy
 1. Mở file `.sln` bằng Visual Studio
@@ -18,6 +19,10 @@
 3. Chạy project
 
 ## Hình ảnh minh họa
-*(Bạn chèn hình ảnh kết quả chạy chương trình vào thư mục docs/screenshots rồi sửa lại link dưới đây nhé)*
+Dưới đây là các hình ảnh kết quả chạy chương trình:
 
-![Ảnh minh họa](docs/screenshots/ten-file-anh.png)
+![Ảnh 1](docs/screenshots/File_1.png)
+<br>
+![Ảnh 2](docs/screenshots/File_2.png)
+<br>
+![Ảnh 3](docs/screenshots/File_3.png)
