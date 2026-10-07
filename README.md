@@ -14,3 +14,4 @@
 - [Lab 04 - Quản lý sản phẩm bằng Console (Generic, Delegate, Event, Exception)](Lab04/README.md)
 - [Lab 05 - Đăng ký khóa học (Windows Forms cơ bản)](Lab05/README.md)
 - [Lab 06 - Quản lý sản phẩm (Windows Forms nâng cao và DataGridView)](Lab06/README.md)
+- [Lab 07 - Quản lý cửa hàng mini (SDI, MDI và ứng dụng nhiều Form)](Lab07/README.md)
