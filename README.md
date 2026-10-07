@@ -13,3 +13,4 @@
 - [Bài tập trên lớp (16/09/2026) - Quản lý nhân viên bằng Console](BTLOP/16092026/README.md)
 - [Lab 04 - Quản lý sản phẩm bằng Console (Generic, Delegate, Event, Exception)](Lab04/README.md)
 - [Lab 05 - Đăng ký khóa học (Windows Forms cơ bản)](Lab05/README.md)
+- [Lab 06 - Quản lý sản phẩm (Windows Forms nâng cao và DataGridView)](Lab06/README.md)
