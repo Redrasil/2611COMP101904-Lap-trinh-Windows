@@ -6,14 +6,14 @@ namespace COMP1019_Lab09_StudentCard;
 
 public partial class FrmStudentCard : Form
 {
-    private Student currentStudent;
-    private Image? studentPhoto;
+    private Student _currentStudent;
+    private Image? _studentPhoto;
 
     public FrmStudentCard()
     {
         InitializeComponent();
-        currentStudent = new Student();
-        studentPhoto = null;
+        _currentStudent = new Student();
+        _studentPhoto = null;
         InitializePrintComponents();
         txtStudentId.TextChanged += StudentInputChanged;
         txtFullName.TextChanged += StudentInputChanged;
@@ -51,10 +51,10 @@ public partial class FrmStudentCard : Form
                     using (Image tempImage = Image.FromFile(openFileDialog.FileName))
                     {
                         Image newPhoto = new Bitmap(tempImage);
-                        studentPhoto?.Dispose();
-                        studentPhoto = newPhoto;
-                        picPhoto.Image = studentPhoto;
-                        currentStudent.Photo = studentPhoto;
+                        _studentPhoto?.Dispose();
+                        _studentPhoto = newPhoto;
+                        picPhoto.Image = _studentPhoto;
+                        _currentStudent.Photo = _studentPhoto;
                         pnlPreview.Invalidate();
                     }
                 }
@@ -112,7 +112,7 @@ public partial class FrmStudentCard : Form
             g.DrawString(title, titleFont, titleBrush, (760 - titleSize.Width) / 2, 20);
         }
 
-        if (studentPhoto != null)
+        if (_studentPhoto != null)
         {
             Rectangle photoBounds = new Rectangle(30, 85, 180, 225);
 
@@ -121,7 +121,7 @@ public partial class FrmStudentCard : Form
                 g.DrawRectangle(photoBorder, photoBounds);
             }
 
-            DrawImageFit(g, studentPhoto, Rectangle.Inflate(photoBounds, -2, -2));
+            DrawImageFit(g, _studentPhoto, Rectangle.Inflate(photoBounds, -2, -2));
         }
 
         const int infoX = 245;
@@ -132,13 +132,13 @@ public partial class FrmStudentCard : Form
         using (Font labelFont = new Font("Arial", 16, FontStyle.Bold))
         using (SolidBrush textBrush = new SolidBrush(Color.Black))
         {
-            g.DrawString($"Mã SV: {currentStudent.StudentId}", labelFont, textBrush, infoX, infoY);
-            g.DrawString($"Họ tên: {currentStudent.FullName}", labelFont, textBrush, infoX, infoY + lineHeight);
-            g.DrawString($"Lớp: {currentStudent.Class}", infoFont, textBrush, infoX, infoY + lineHeight * 2);
-            g.DrawString($"Khoa: {currentStudent.Faculty}", infoFont, textBrush, infoX, infoY + lineHeight * 3);
-            g.DrawString($"Khóa: {currentStudent.Course}", infoFont, textBrush, infoX, infoY + lineHeight * 4);
-            g.DrawString($"Ngày sinh: {currentStudent.DateOfBirth:dd/MM/yyyy}", infoFont, textBrush, infoX, infoY + lineHeight * 5);
-            g.DrawString($"Giới tính: {currentStudent.Gender}", infoFont, textBrush, infoX, infoY + lineHeight * 6);
+            g.DrawString($"Mã SV: {_currentStudent.StudentId}", labelFont, textBrush, infoX, infoY);
+            g.DrawString($"Họ tên: {_currentStudent.FullName}", labelFont, textBrush, infoX, infoY + lineHeight);
+            g.DrawString($"Lớp: {_currentStudent.Class}", infoFont, textBrush, infoX, infoY + lineHeight * 2);
+            g.DrawString($"Khoa: {_currentStudent.Faculty}", infoFont, textBrush, infoX, infoY + lineHeight * 3);
+            g.DrawString($"Khóa: {_currentStudent.Course}", infoFont, textBrush, infoX, infoY + lineHeight * 4);
+            g.DrawString($"Ngày sinh: {_currentStudent.DateOfBirth:dd/MM/yyyy}", infoFont, textBrush, infoX, infoY + lineHeight * 5);
+            g.DrawString($"Giới tính: {_currentStudent.Gender}", infoFont, textBrush, infoX, infoY + lineHeight * 6);
         }
 
         using (Font footerFont = new Font("Arial", 14, FontStyle.Italic))
@@ -186,14 +186,14 @@ public partial class FrmStudentCard : Form
 
     private void UpdateStudentFromForm()
     {
-        currentStudent.StudentId = txtStudentId.Text.Trim();
-        currentStudent.FullName = txtFullName.Text.Trim();
-        currentStudent.Class = cboClass.SelectedItem?.ToString() ?? string.Empty;
-        currentStudent.Faculty = cboFaculty.SelectedItem?.ToString() ?? string.Empty;
-        currentStudent.Course = cboCourse.SelectedItem?.ToString() ?? string.Empty;
-        currentStudent.DateOfBirth = dtpDateOfBirth.Value;
-        currentStudent.Gender = cboGender.SelectedItem?.ToString() ?? string.Empty;
-        currentStudent.Photo = studentPhoto;
+        _currentStudent.StudentId = txtStudentId.Text.Trim();
+        _currentStudent.FullName = txtFullName.Text.Trim();
+        _currentStudent.Class = cboClass.SelectedItem?.ToString() ?? string.Empty;
+        _currentStudent.Faculty = cboFaculty.SelectedItem?.ToString() ?? string.Empty;
+        _currentStudent.Course = cboCourse.SelectedItem?.ToString() ?? string.Empty;
+        _currentStudent.DateOfBirth = dtpDateOfBirth.Value;
+        _currentStudent.Gender = cboGender.SelectedItem?.ToString() ?? string.Empty;
+        _currentStudent.Photo = _studentPhoto;
     }
 
     private void btnPrintPreview_Click(object? sender, EventArgs e)
@@ -237,9 +237,9 @@ public partial class FrmStudentCard : Form
         cboGender.SelectedIndex = -1;
         dtpDateOfBirth.Value = DateTime.Now;
         picPhoto.Image = null;
-        studentPhoto?.Dispose();
-        studentPhoto = null;
-        currentStudent = new Student();
+        _studentPhoto?.Dispose();
+        _studentPhoto = null;
+        _currentStudent = new Student();
         pnlPreview.Invalidate();
     }
 
@@ -247,21 +247,21 @@ public partial class FrmStudentCard : Form
     {
         UpdateStudentFromForm();
 
-        if (string.IsNullOrWhiteSpace(currentStudent.StudentId))
+        if (string.IsNullOrWhiteSpace(_currentStudent.StudentId))
         {
             MessageBox.Show("Vui lòng nhập mã sinh viên!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txtStudentId.Focus();
             return false;
         }
 
-        if (string.IsNullOrWhiteSpace(currentStudent.FullName))
+        if (string.IsNullOrWhiteSpace(_currentStudent.FullName))
         {
             MessageBox.Show("Vui lòng nhập họ tên!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txtFullName.Focus();
             return false;
         }
 
-        if (studentPhoto == null)
+        if (_studentPhoto == null)
         {
             MessageBox.Show("Vui lòng chọn ảnh đại diện!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
@@ -303,7 +303,7 @@ public partial class FrmStudentCard : Form
 
     protected override void OnFormClosing(FormClosingEventArgs e)
     {
-        studentPhoto?.Dispose();
+        _studentPhoto?.Dispose();
         printDocument?.Dispose();
         printPreviewDialog?.Dispose();
         printDialog?.Dispose();

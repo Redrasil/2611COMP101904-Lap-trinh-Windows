@@ -4,22 +4,22 @@ namespace COMP1019_Lab08_SimplePaint;
 
 public partial class Form1 : Form
 {
-    private List<DrawItem> drawItems;
-    private List<Point> currentPoints;
-    private Point startPoint;
-    private Point endPoint;
-    private bool isDrawing;
-    private Color currentColor;
-    private Image? backgroundImage;
+    private readonly List<DrawItem> _drawItems;
+    private readonly List<Point> _currentPoints;
+    private Point _startPoint;
+    private Point _endPoint;
+    private bool _isDrawing;
+    private Color _currentColor;
+    private Image? _backgroundImage;
 
     public Form1()
     {
         InitializeComponent();
-        drawItems = new List<DrawItem>();
-        currentPoints = new List<Point>();
-        isDrawing = false;
-        currentColor = Color.Black;
-        backgroundImage = null;
+        _drawItems = new List<DrawItem>();
+        _currentPoints = new List<Point>();
+        _isDrawing = false;
+        _currentColor = Color.Black;
+        _backgroundImage = null;
     }
 
     private static Image LoadImageCopy(string fileName)
@@ -34,14 +34,12 @@ public partial class Form1 : Form
         Graphics g = e.Graphics;
         g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-        // Draw background image if exists
-        if (backgroundImage != null)
+        if (_backgroundImage != null)
         {
-            g.DrawImage(backgroundImage, 0, 0, canvas.Width, canvas.Height);
+            g.DrawImage(_backgroundImage, 0, 0, canvas.Width, canvas.Height);
         }
 
-        // Draw all saved items
-        foreach (var item in drawItems)
+        foreach (DrawItem item in _drawItems)
         {
             using (Pen pen = new Pen(item.Color, item.Width))
             {
@@ -74,36 +72,35 @@ public partial class Form1 : Form
             }
         }
 
-        // Draw current drawing
-        if (isDrawing)
+        if (_isDrawing)
         {
             PaintMode mode = (PaintMode)cboMode.SelectedIndex;
-            using (Pen pen = new Pen(currentColor, (float)nudWidth.Value))
+            using (Pen pen = new Pen(_currentColor, (float)nudWidth.Value))
             {
                 switch (mode)
                 {
                     case PaintMode.Pen:
-                        if (currentPoints.Count > 1)
+                        if (_currentPoints.Count > 1)
                         {
-                            g.DrawLines(pen, currentPoints.ToArray());
+                            g.DrawLines(pen, _currentPoints.ToArray());
                         }
                         break;
                     case PaintMode.Line:
-                        g.DrawLine(pen, startPoint, endPoint);
+                        g.DrawLine(pen, _startPoint, _endPoint);
                         break;
                     case PaintMode.Rectangle:
                         g.DrawRectangle(pen,
-                            Math.Min(startPoint.X, endPoint.X),
-                            Math.Min(startPoint.Y, endPoint.Y),
-                            Math.Abs(endPoint.X - startPoint.X),
-                            Math.Abs(endPoint.Y - startPoint.Y));
+                            Math.Min(_startPoint.X, _endPoint.X),
+                            Math.Min(_startPoint.Y, _endPoint.Y),
+                            Math.Abs(_endPoint.X - _startPoint.X),
+                            Math.Abs(_endPoint.Y - _startPoint.Y));
                         break;
                     case PaintMode.Ellipse:
                         g.DrawEllipse(pen,
-                            Math.Min(startPoint.X, endPoint.X),
-                            Math.Min(startPoint.Y, endPoint.Y),
-                            Math.Abs(endPoint.X - startPoint.X),
-                            Math.Abs(endPoint.Y - startPoint.Y));
+                            Math.Min(_startPoint.X, _endPoint.X),
+                            Math.Min(_startPoint.Y, _endPoint.Y),
+                            Math.Abs(_endPoint.X - _startPoint.X),
+                            Math.Abs(_endPoint.Y - _startPoint.Y));
                         break;
                 }
             }
@@ -114,27 +111,26 @@ public partial class Form1 : Form
     {
         if (e.Button == MouseButtons.Left)
         {
-            isDrawing = true;
-            startPoint = e.Location;
-            endPoint = e.Location;
-            currentPoints.Clear();
-            currentPoints.Add(e.Location);
+            _isDrawing = true;
+            _startPoint = e.Location;
+            _endPoint = e.Location;
+            _currentPoints.Clear();
+            _currentPoints.Add(e.Location);
         }
     }
 
     private void canvas_MouseMove(object sender, MouseEventArgs e)
     {
-        // Update status label with mouse coordinates
         lblStatus.Text = $"Status: X={e.X}, Y={e.Y}";
 
-        if (isDrawing)
+        if (_isDrawing)
         {
             PaintMode mode = (PaintMode)cboMode.SelectedIndex;
-            endPoint = e.Location;
+            _endPoint = e.Location;
 
             if (mode == PaintMode.Pen)
             {
-                currentPoints.Add(e.Location);
+                _currentPoints.Add(e.Location);
             }
 
             canvas.Invalidate();
@@ -143,28 +139,28 @@ public partial class Form1 : Form
 
     private void canvas_MouseUp(object sender, MouseEventArgs e)
     {
-        if (e.Button == MouseButtons.Left && isDrawing)
+        if (e.Button == MouseButtons.Left && _isDrawing)
         {
-            isDrawing = false;
-            endPoint = e.Location;
+            _isDrawing = false;
+            _endPoint = e.Location;
 
             PaintMode mode = (PaintMode)cboMode.SelectedIndex;
-            DrawItem item = new DrawItem(mode, currentColor, (float)nudWidth.Value);
+            DrawItem item = new DrawItem(mode, _currentColor, (float)nudWidth.Value);
 
             switch (mode)
             {
                 case PaintMode.Pen:
-                    item.Points = new List<Point>(currentPoints);
+                    item.Points = new List<Point>(_currentPoints);
                     break;
                 case PaintMode.Line:
                 case PaintMode.Rectangle:
                 case PaintMode.Ellipse:
-                    item.StartPoint = startPoint;
-                    item.EndPoint = endPoint;
+                    item.StartPoint = _startPoint;
+                    item.EndPoint = _endPoint;
                     break;
             }
 
-            drawItems.Add(item);
+            _drawItems.Add(item);
             canvas.Invalidate();
         }
     }
@@ -173,29 +169,29 @@ public partial class Form1 : Form
     {
         using (ColorDialog colorDialog = new ColorDialog())
         {
-            colorDialog.Color = currentColor;
+            colorDialog.Color = _currentColor;
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                currentColor = colorDialog.Color;
-                btnColor.BackColor = currentColor;
+                _currentColor = colorDialog.Color;
+                btnColor.BackColor = _currentColor;
             }
         }
     }
 
     private void btnUndo_Click(object? sender, EventArgs e)
     {
-        if (drawItems.Count > 0)
+        if (_drawItems.Count > 0)
         {
-            drawItems.RemoveAt(drawItems.Count - 1);
+            _drawItems.RemoveAt(_drawItems.Count - 1);
             canvas.Invalidate();
         }
     }
 
     private void btnClear_Click(object? sender, EventArgs e)
     {
-        drawItems.Clear();
-        backgroundImage?.Dispose();
-        backgroundImage = null;
+        _drawItems.Clear();
+        _backgroundImage?.Dispose();
+        _backgroundImage = null;
         canvas.Invalidate();
     }
 
@@ -233,8 +229,8 @@ public partial class Form1 : Form
                 try
                 {
                     Image loadedImage = LoadImageCopy(openDialog.FileName);
-                    backgroundImage?.Dispose();
-                    backgroundImage = loadedImage;
+                    _backgroundImage?.Dispose();
+                    _backgroundImage = loadedImage;
                     canvas.Invalidate();
                 }
                 catch (Exception ex)
@@ -252,7 +248,7 @@ public partial class Form1 : Form
 
     protected override void OnFormClosing(FormClosingEventArgs e)
     {
-        backgroundImage?.Dispose();
+        _backgroundImage?.Dispose();
         base.OnFormClosing(e);
     }
 

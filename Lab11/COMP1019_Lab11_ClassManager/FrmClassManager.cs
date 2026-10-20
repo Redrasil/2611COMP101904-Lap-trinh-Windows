@@ -5,7 +5,7 @@ namespace COMP1019_Lab11_ClassManager;
 public partial class FrmClassManager : Form
 {
     // Thay đổi lại nếu SQL Server trên máy dùng instance khác
-    private readonly string connectionString = "Server=.\\SQLEXPRESS;Database=EduManagerDB;Integrated Security=True;TrustServerCertificate=True;";
+    private readonly string _connectionString = "Server=.\\SQLEXPRESS;Database=EduManagerDB;Integrated Security=True;TrustServerCertificate=True;";
 
     public FrmClassManager()
     {
@@ -22,7 +22,7 @@ public partial class FrmClassManager : Form
     {
         try
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 string query = "SELECT MaLop, TenLop FROM LOP ORDER BY MaLop";
@@ -71,7 +71,7 @@ public partial class FrmClassManager : Form
 
         try
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
@@ -132,7 +132,7 @@ public partial class FrmClassManager : Form
 
         try
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
@@ -187,7 +187,7 @@ public partial class FrmClassManager : Form
 
         try
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
@@ -238,7 +238,7 @@ public partial class FrmClassManager : Form
 
         try
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 string query = "SELECT MaLop, TenLop FROM LOP WHERE MaLop LIKE @Keyword OR TenLop LIKE @Keyword ORDER BY MaLop";
