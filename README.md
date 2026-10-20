@@ -15,3 +15,7 @@
 - [Lab 05 - Đăng ký khóa học (Windows Forms cơ bản)](Lab05/README.md)
 - [Lab 06 - Quản lý sản phẩm (Windows Forms nâng cao và DataGridView)](Lab06/README.md)
 - [Lab 07 - Quản lý cửa hàng mini (SDI, MDI và ứng dụng nhiều Form)](Lab07/README.md)
+- [Lab 08 - Ứng dụng Paint đơn giản (WinForms và GDI+)](Lab08/README.md)
+- [Lab 09 - Thiết kế và in thẻ sinh viên (WinForms, GDI+, PrintDocument)](Lab09/README.md)
+- [Lab 10 - Thiết kế CSDL EduManagerDB bằng SQL Server](Lab10/README.md)
+- [Lab 11 - ADO.NET và CRUD với SQL Server (Quản lý lớp học)](Lab11/README.md)
