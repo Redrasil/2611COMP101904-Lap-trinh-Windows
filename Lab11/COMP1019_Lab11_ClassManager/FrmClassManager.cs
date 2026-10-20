@@ -4,8 +4,12 @@ namespace COMP1019_Lab11_ClassManager;
 
 public partial class FrmClassManager : Form
 {
-    // Thay đổi lại nếu SQL Server trên máy dùng instance khác
-    private readonly string connectionString = "Server=.\\SQLEXPRESS;Database=EduManagerDB;Integrated Security=True;TrustServerCertificate=True;";
+    // Connection string - thay đổi theo cấu hình SQL Server của bạn
+    // cho SQL Server LocalDB
+    private readonly string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=EduManagerDB;Integrated Security=True;";
+
+    // cho SQL Server Express
+    // private readonly string connectionString = "Server=.\\SQLEXPRESS;Database=EduManagerDB;Integrated Security=True;";
 
     public FrmClassManager()
     {
@@ -79,7 +83,7 @@ public partial class FrmClassManager : Form
                 string checkQuery = "SELECT COUNT(*) FROM LOP WHERE MaLop = @MaLop";
                 using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
                 {
-                    checkCommand.Parameters.Add("@MaLop", System.Data.SqlDbType.VarChar, 20).Value = maLop;
+                    checkCommand.Parameters.AddWithValue("@MaLop", maLop);
                     int count = (int)checkCommand.ExecuteScalar();
 
                     if (count > 0)
@@ -94,8 +98,8 @@ public partial class FrmClassManager : Form
                 string insertQuery = "INSERT INTO LOP (MaLop, TenLop) VALUES (@MaLop, @TenLop)";
                 using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
                 {
-                    insertCommand.Parameters.Add("@MaLop", System.Data.SqlDbType.VarChar, 20).Value = maLop;
-                    insertCommand.Parameters.Add("@TenLop", System.Data.SqlDbType.NVarChar, 100).Value = tenLop;
+                    insertCommand.Parameters.AddWithValue("@MaLop", maLop);
+                    insertCommand.Parameters.AddWithValue("@TenLop", tenLop);
                     insertCommand.ExecuteNonQuery();
                 }
 
@@ -139,8 +143,8 @@ public partial class FrmClassManager : Form
                 string updateQuery = "UPDATE LOP SET TenLop = @TenLop WHERE MaLop = @MaLop";
                 using (SqlCommand command = new SqlCommand(updateQuery, connection))
                 {
-                    command.Parameters.Add("@TenLop", System.Data.SqlDbType.NVarChar, 100).Value = tenLop;
-                    command.Parameters.Add("@MaLop", System.Data.SqlDbType.VarChar, 20).Value = maLop;
+                    command.Parameters.AddWithValue("@TenLop", tenLop);
+                    command.Parameters.AddWithValue("@MaLop", maLop);
                     int rowsAffected = command.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
@@ -195,7 +199,7 @@ public partial class FrmClassManager : Form
                 string checkQuery = "SELECT COUNT(*) FROM SINHVIEN WHERE MaLop = @MaLop";
                 using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
                 {
-                    checkCommand.Parameters.Add("@MaLop", System.Data.SqlDbType.VarChar, 20).Value = maLop;
+                    checkCommand.Parameters.AddWithValue("@MaLop", maLop);
                     int count = (int)checkCommand.ExecuteScalar();
 
                     if (count > 0)
@@ -209,7 +213,7 @@ public partial class FrmClassManager : Form
                 string deleteQuery = "DELETE FROM LOP WHERE MaLop = @MaLop";
                 using (SqlCommand command = new SqlCommand(deleteQuery, connection))
                 {
-                    command.Parameters.Add("@MaLop", System.Data.SqlDbType.VarChar, 20).Value = maLop;
+                    command.Parameters.AddWithValue("@MaLop", maLop);
                     int rowsAffected = command.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
@@ -245,7 +249,7 @@ public partial class FrmClassManager : Form
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.Add("@Keyword", System.Data.SqlDbType.NVarChar, 100).Value = $"%{keyword}%";
+                    command.Parameters.AddWithValue("@Keyword", $"%{keyword}%");
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         System.Data.DataTable table = new System.Data.DataTable();

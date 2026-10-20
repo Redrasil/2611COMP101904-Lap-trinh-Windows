@@ -88,21 +88,7 @@ LEFT JOIN KETQUA kq ON sv.MaSV = kq.MaSV
 WHERE kq.MaSV IS NULL;
 
 -- Ví dụ: Xóa sinh viên SV006 (nếu chưa có điểm)
-BEGIN TRANSACTION;
-
-DELETE sv
-FROM SINHVIEN sv
-LEFT JOIN KETQUA kq ON sv.MaSV = kq.MaSV
-WHERE sv.MaSV = 'SV006'
-  AND kq.MaSV IS NULL;
-
--- Kiểm tra lại sau khi xóa
-SELECT MaSV, HoTen
-FROM SINHVIEN
-WHERE MaSV = 'SV006';
-
--- Chỉ kiểm thử thao tác DELETE, không làm thay đổi dữ liệu mẫu
-ROLLBACK TRANSACTION;
+-- DELETE FROM SINHVIEN WHERE MaSV = 'SV006';
 GO
 
 -- =============================================
@@ -190,7 +176,7 @@ SELECT N'Query 12: Test lỗi khi nhập điểm ngoài khoảng 0 đến 10' AS
 -- Thử nhập điểm = 15
 BEGIN TRY
     INSERT INTO KETQUA (MaSV, MaMH, Diem)
-    VALUES ('SV001', 'MH003', 15);
+    VALUES ('SV001', 'MH001', 15);
     PRINT N'Thêm thành công (không nên xảy ra)';
 END TRY
 BEGIN CATCH
@@ -201,7 +187,7 @@ END CATCH;
 -- Thử nhập điểm = -5 (nhỏ hơn 0)
 BEGIN TRY
     INSERT INTO KETQUA (MaSV, MaMH, Diem)
-    VALUES ('SV001', 'MH003', -5);
+    VALUES ('SV001', 'MH001', -5);
     PRINT N'Thêm thành công (không nên xảy ra)';
 END TRY
 BEGIN CATCH

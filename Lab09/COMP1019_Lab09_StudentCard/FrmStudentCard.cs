@@ -1,5 +1,4 @@
 using COMP1019_Lab09_StudentCard.Models;
-using System.Drawing.Drawing2D;
 using System.Drawing.Printing;
 
 namespace COMP1019_Lab09_StudentCard;
@@ -15,13 +14,6 @@ public partial class FrmStudentCard : Form
         currentStudent = new Student();
         studentPhoto = null;
         InitializePrintComponents();
-        txtStudentId.TextChanged += StudentInputChanged;
-        txtFullName.TextChanged += StudentInputChanged;
-        cboClass.SelectedIndexChanged += StudentInputChanged;
-        cboFaculty.SelectedIndexChanged += StudentInputChanged;
-        cboCourse.SelectedIndexChanged += StudentInputChanged;
-        dtpDateOfBirth.ValueChanged += StudentInputChanged;
-        cboGender.SelectedIndexChanged += StudentInputChanged;
     }
 
     private void InitializePrintComponents()
@@ -50,9 +42,7 @@ public partial class FrmStudentCard : Form
                 {
                     using (Image tempImage = Image.FromFile(openFileDialog.FileName))
                     {
-                        Image newPhoto = new Bitmap(tempImage);
-                        studentPhoto?.Dispose();
-                        studentPhoto = newPhoto;
+                        studentPhoto = new Bitmap(tempImage);
                         picPhoto.Image = studentPhoto;
                         currentStudent.Photo = studentPhoto;
                         pnlPreview.Invalidate();
@@ -78,58 +68,50 @@ public partial class FrmStudentCard : Form
 
     private void DrawStudentCard(Graphics g, int width, int height)
     {
-        const float cardRatio = 1.586f;
-        int cardWidth = Math.Max(1, width - 40);
-        int cardHeight = (int)(cardWidth / cardRatio);
-        if (cardHeight > height - 40)
-        {
-            cardHeight = Math.Max(1, height - 40);
-            cardWidth = (int)(cardHeight * cardRatio);
-        }
-
-        float scale = cardWidth / 760f;
-        float cardX = (width - cardWidth) / 2f;
-        float cardY = (height - cardHeight) / 2f;
-        GraphicsState state = g.Save();
-        g.TranslateTransform(cardX, cardY);
-        g.ScaleTransform(scale, scale);
-
+        // Background
         using (SolidBrush bgBrush = new SolidBrush(Color.White))
         {
-            g.FillRectangle(bgBrush, 0, 0, 760, 480);
+            g.FillRectangle(bgBrush, 0, 0, width, height);
         }
 
+        // Border
         using (Pen borderPen = new Pen(Color.Black, 2))
         {
-            g.DrawRectangle(borderPen, 5, 5, 750, 470);
+            g.DrawRectangle(borderPen, 5, 5, width - 10, height - 10);
         }
 
-        using (Font titleFont = new Font("Arial", 24, FontStyle.Bold))
+        // Title
+        using (Font titleFont = new Font("Arial", 16, FontStyle.Bold))
         using (SolidBrush titleBrush = new SolidBrush(Color.Black))
         {
-            const string title = "THẺ SINH VIÊN";
+            string title = "THẺ SINH VIÊN";
             SizeF titleSize = g.MeasureString(title, titleFont);
-            g.DrawString(title, titleFont, titleBrush, (760 - titleSize.Width) / 2, 20);
+            g.DrawString(title, titleFont, titleBrush, (width - titleSize.Width) / 2, 20);
         }
 
+        // Photo (left side)
         if (studentPhoto != null)
         {
-            Rectangle photoBounds = new Rectangle(30, 85, 180, 225);
+            int photoWidth = 120;
+            int photoHeight = 150;
+            int photoX = 30;
+            int photoY = 60;
 
             using (Pen photoBorder = new Pen(Color.Black, 1))
             {
-                g.DrawRectangle(photoBorder, photoBounds);
+                g.DrawRectangle(photoBorder, photoX, photoY, photoWidth, photoHeight);
             }
 
-            DrawImageFit(g, studentPhoto, Rectangle.Inflate(photoBounds, -2, -2));
+            g.DrawImage(studentPhoto, photoX + 1, photoY + 1, photoWidth - 2, photoHeight - 2);
         }
 
-        const int infoX = 245;
-        const int infoY = 90;
-        const int lineHeight = 42;
+        // Student info (right side)
+        int infoX = 180;
+        int infoY = 60;
+        int lineHeight = 30;
 
-        using (Font infoFont = new Font("Arial", 16))
-        using (Font labelFont = new Font("Arial", 16, FontStyle.Bold))
+        using (Font infoFont = new Font("Arial", 11))
+        using (Font labelFont = new Font("Arial", 11, FontStyle.Bold))
         using (SolidBrush textBrush = new SolidBrush(Color.Black))
         {
             g.DrawString($"Mã SV: {currentStudent.StudentId}", labelFont, textBrush, infoX, infoY);
@@ -141,59 +123,14 @@ public partial class FrmStudentCard : Form
             g.DrawString($"Giới tính: {currentStudent.Gender}", infoFont, textBrush, infoX, infoY + lineHeight * 6);
         }
 
-        using (Font footerFont = new Font("Arial", 14, FontStyle.Italic))
+        // Footer with school name
+        using (Font footerFont = new Font("Arial", 10, FontStyle.Italic))
         using (SolidBrush footerBrush = new SolidBrush(Color.Gray))
         {
             string footer = "Trường Đại học Sư Phạm TP. Hồ Chí Minh";
             SizeF footerSize = g.MeasureString(footer, footerFont);
-            g.DrawString(footer, footerFont, footerBrush, (760 - footerSize.Width) / 2, 435);
+            g.DrawString(footer, footerFont, footerBrush, (width - footerSize.Width) / 2, height - 30);
         }
-
-        g.Restore(state);
-    }
-
-    private static void DrawImageFit(Graphics graphics, Image image, Rectangle bounds)
-    {
-        float imageRatio = (float)image.Width / image.Height;
-        float boundsRatio = (float)bounds.Width / bounds.Height;
-        int drawWidth;
-        int drawHeight;
-
-        if (imageRatio > boundsRatio)
-        {
-            drawWidth = bounds.Width;
-            drawHeight = (int)(drawWidth / imageRatio);
-        }
-        else
-        {
-            drawHeight = bounds.Height;
-            drawWidth = (int)(drawHeight * imageRatio);
-        }
-
-        Rectangle destination = new Rectangle(
-            bounds.X + (bounds.Width - drawWidth) / 2,
-            bounds.Y + (bounds.Height - drawHeight) / 2,
-            drawWidth,
-            drawHeight);
-        graphics.DrawImage(image, destination);
-    }
-
-    private void StudentInputChanged(object? sender, EventArgs e)
-    {
-        UpdateStudentFromForm();
-        pnlPreview.Invalidate();
-    }
-
-    private void UpdateStudentFromForm()
-    {
-        currentStudent.StudentId = txtStudentId.Text.Trim();
-        currentStudent.FullName = txtFullName.Text.Trim();
-        currentStudent.Class = cboClass.SelectedItem?.ToString() ?? string.Empty;
-        currentStudent.Faculty = cboFaculty.SelectedItem?.ToString() ?? string.Empty;
-        currentStudent.Course = cboCourse.SelectedItem?.ToString() ?? string.Empty;
-        currentStudent.DateOfBirth = dtpDateOfBirth.Value;
-        currentStudent.Gender = cboGender.SelectedItem?.ToString() ?? string.Empty;
-        currentStudent.Photo = studentPhoto;
     }
 
     private void btnPrintPreview_Click(object? sender, EventArgs e)
@@ -237,7 +174,6 @@ public partial class FrmStudentCard : Form
         cboGender.SelectedIndex = -1;
         dtpDateOfBirth.Value = DateTime.Now;
         picPhoto.Image = null;
-        studentPhoto?.Dispose();
         studentPhoto = null;
         currentStudent = new Student();
         pnlPreview.Invalidate();
@@ -245,7 +181,14 @@ public partial class FrmStudentCard : Form
 
     private bool ValidateData()
     {
-        UpdateStudentFromForm();
+        currentStudent.StudentId = txtStudentId.Text.Trim();
+        currentStudent.FullName = txtFullName.Text.Trim();
+        currentStudent.Class = cboClass.SelectedItem?.ToString() ?? string.Empty;
+        currentStudent.Faculty = cboFaculty.SelectedItem?.ToString() ?? string.Empty;
+        currentStudent.Course = cboCourse.SelectedItem?.ToString() ?? string.Empty;
+        currentStudent.DateOfBirth = dtpDateOfBirth.Value;
+        currentStudent.Gender = cboGender.SelectedItem?.ToString() ?? string.Empty;
+        currentStudent.Photo = studentPhoto;
 
         if (string.IsNullOrWhiteSpace(currentStudent.StudentId))
         {
