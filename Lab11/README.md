@@ -1,4 +1,4 @@
-# Lab 11 - Quản lý lớp học bằng ADO.NET
+# Lab 11: Quản lý lớp học bằng ADO.NET
 
 ## Thông tin sinh viên
 - Họ tên: Hoàng Dương Phúc Quang
