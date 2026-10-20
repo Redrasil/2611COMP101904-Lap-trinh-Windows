@@ -1,4 +1,4 @@
-# Lab 01 - Chương trình Thông tin cá nhân
+# Lab 01: Chương trình Thông tin cá nhân
 
 ## Thông tin sinh viên
 - Họ tên: Hoàng Dương Phúc Quang
