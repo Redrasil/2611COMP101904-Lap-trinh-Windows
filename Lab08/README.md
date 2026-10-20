@@ -1,4 +1,4 @@
-# Lab 08 - Ứng dụng Paint đơn giản
+# Lab 08: Ứng dụng Paint đơn giản
 
 ## Thông tin sinh viên
 - Họ tên: Hoàng Dương Phúc Quang
