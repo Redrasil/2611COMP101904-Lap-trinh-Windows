@@ -1,4 +1,4 @@
-# Lab 10 - Thiết kế cơ sở dữ liệu EduManagerDB
+# Lab 10: Thiết kế cơ sở dữ liệu EduManagerDB
 
 ## Thông tin sinh viên
 - Họ tên: Hoàng Dương Phúc Quang
@@ -46,4 +46,4 @@ Sau khi chạy hai file đầu, dữ liệu mẫu có:
 - KETQUA: 8 dòng
 - TAIKHOAN: 2 dòng
 
-Trong Query 6, thao tác xóa được đặt trong transaction và rollback sau khi kiểm tra để không làm mất dữ liệu mẫu.
+Trong Query 6, có thể xóa sinh viên chưa có dữ liệu điểm bằng câu lệnh `DELETE` có kiểm tra `LEFT JOIN`.
