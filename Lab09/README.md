@@ -1,4 +1,4 @@
-# Lab 09 - Thiết kế và in thẻ sinh viên
+# Lab 09: Thiết kế và in thẻ sinh viên
 
 ## Thông tin sinh viên
 - Họ tên: Hoàng Dương Phúc Quang
