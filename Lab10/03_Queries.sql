@@ -88,6 +88,8 @@ LEFT JOIN KETQUA kq ON sv.MaSV = kq.MaSV
 WHERE kq.MaSV IS NULL;
 
 -- Ví dụ: Xóa sinh viên SV006 (nếu chưa có điểm)
+BEGIN TRANSACTION;
+
 DELETE sv
 FROM SINHVIEN sv
 LEFT JOIN KETQUA kq ON sv.MaSV = kq.MaSV
@@ -98,6 +100,9 @@ WHERE sv.MaSV = 'SV006'
 SELECT MaSV, HoTen
 FROM SINHVIEN
 WHERE MaSV = 'SV006';
+
+-- Chỉ kiểm thử thao tác DELETE, không làm thay đổi dữ liệu mẫu
+ROLLBACK TRANSACTION;
 GO
 
 -- =============================================

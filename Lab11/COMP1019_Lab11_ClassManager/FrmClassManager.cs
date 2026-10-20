@@ -4,12 +4,8 @@ namespace COMP1019_Lab11_ClassManager;
 
 public partial class FrmClassManager : Form
 {
-    // Connection string - thay đổi theo cấu hình SQL Server của bạn
-    // cho SQL Server LocalDB
+    // Thay đổi lại nếu SQL Server trên máy dùng instance khác
     private readonly string connectionString = "Server=.\\SQLEXPRESS;Database=EduManagerDB;Integrated Security=True;TrustServerCertificate=True;";
-
-    // cho SQL Server Express
-    // private readonly string connectionString = "Server=.\\SQLEXPRESS;Database=EduManagerDB;Integrated Security=True;";
 
     public FrmClassManager()
     {

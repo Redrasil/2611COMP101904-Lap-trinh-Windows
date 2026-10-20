@@ -21,7 +21,7 @@ public partial class FrmStudentCard : Form
         cboFaculty.SelectedIndexChanged += StudentInputChanged;
         cboCourse.SelectedIndexChanged += StudentInputChanged;
         dtpDateOfBirth.ValueChanged += StudentInputChanged;
-        cboGender.SelectedValueChanged += StudentInputChanged;
+        cboGender.SelectedIndexChanged += StudentInputChanged;
     }
 
     private void InitializePrintComponents()
