@@ -41,9 +41,14 @@ dotnet run --project COMP1019_Lab09_StudentCard/COMP1019_Lab09_StudentCard.cspro
 ```
 
 ## Kiểm thử
-- Bấm xem trước khi thiếu mã, họ tên hoặc ảnh.
-- Chọn ảnh hợp lệ và kiểm tra ảnh không bị méo.
-- Nhập đầy đủ thông tin và kiểm tra Panel preview.
-- Mở Print Preview và kiểm tra nội dung thẻ.
-- Thử in hoặc hủy hộp thoại PrintDialog.
-- Dùng F6 để xóa dữ liệu và chọn ảnh khác.
+| STT | Tình huống kiểm thử | Kết quả mong đợi |
+|---:|---|---|
+| 1 | Bấm **Xem trước** khi chưa nhập mã sinh viên | Hiển thị cảnh báo yêu cầu nhập mã sinh viên và không mở preview |
+| 2 | Bấm **Xem trước** khi chưa nhập họ tên | Hiển thị cảnh báo yêu cầu nhập họ tên và không mở preview |
+| 3 | Bấm **Xem trước** khi chưa chọn ảnh đại diện | Hiển thị cảnh báo yêu cầu chọn ảnh và không mở preview |
+| 4 | Chọn ảnh JPG, PNG hoặc BMP hợp lệ | Ảnh được hiển thị trong `PictureBox` và giữ đúng tỉ lệ |
+| 5 | Nhập đầy đủ thông tin sinh viên | Panel vẽ lại thẻ và hiển thị đúng thông tin đã nhập |
+| 6 | Thay đổi thông tin sau khi preview | Nội dung Panel preview được cập nhật theo dữ liệu mới |
+| 7 | Mở **Print Preview** khi dữ liệu hợp lệ | Hiển thị bản xem trước có khung, tiêu đề, ảnh và thông tin sinh viên |
+| 8 | Bấm **In**, sau đó chọn máy in hoặc hủy `PrintDialog` | Cho phép chọn máy in khi xác nhận; hủy hộp thoại không làm ứng dụng lỗi |
+| 9 | Nhấn `F6` để làm mới form | Xóa dữ liệu nhập, xóa ảnh và đưa form về trạng thái ban đầu |
