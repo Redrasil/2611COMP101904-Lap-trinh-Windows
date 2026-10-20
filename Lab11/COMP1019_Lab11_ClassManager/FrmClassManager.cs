@@ -83,7 +83,7 @@ public partial class FrmClassManager : Form
                 string checkQuery = "SELECT COUNT(*) FROM LOP WHERE MaLop = @MaLop";
                 using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
                 {
-                    checkCommand.Parameters.AddWithValue("@MaLop", maLop);
+                    checkCommand.Parameters.Add("@MaLop", System.Data.SqlDbType.VarChar, 20).Value = maLop;
                     int count = (int)checkCommand.ExecuteScalar();
 
                     if (count > 0)
@@ -98,8 +98,8 @@ public partial class FrmClassManager : Form
                 string insertQuery = "INSERT INTO LOP (MaLop, TenLop) VALUES (@MaLop, @TenLop)";
                 using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
                 {
-                    insertCommand.Parameters.AddWithValue("@MaLop", maLop);
-                    insertCommand.Parameters.AddWithValue("@TenLop", tenLop);
+                    insertCommand.Parameters.Add("@MaLop", System.Data.SqlDbType.VarChar, 20).Value = maLop;
+                    insertCommand.Parameters.Add("@TenLop", System.Data.SqlDbType.NVarChar, 100).Value = tenLop;
                     insertCommand.ExecuteNonQuery();
                 }
 
@@ -143,8 +143,8 @@ public partial class FrmClassManager : Form
                 string updateQuery = "UPDATE LOP SET TenLop = @TenLop WHERE MaLop = @MaLop";
                 using (SqlCommand command = new SqlCommand(updateQuery, connection))
                 {
-                    command.Parameters.AddWithValue("@TenLop", tenLop);
-                    command.Parameters.AddWithValue("@MaLop", maLop);
+                    command.Parameters.Add("@TenLop", System.Data.SqlDbType.NVarChar, 100).Value = tenLop;
+                    command.Parameters.Add("@MaLop", System.Data.SqlDbType.VarChar, 20).Value = maLop;
                     int rowsAffected = command.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
@@ -199,7 +199,7 @@ public partial class FrmClassManager : Form
                 string checkQuery = "SELECT COUNT(*) FROM SINHVIEN WHERE MaLop = @MaLop";
                 using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
                 {
-                    checkCommand.Parameters.AddWithValue("@MaLop", maLop);
+                    checkCommand.Parameters.Add("@MaLop", System.Data.SqlDbType.VarChar, 20).Value = maLop;
                     int count = (int)checkCommand.ExecuteScalar();
 
                     if (count > 0)
@@ -213,7 +213,7 @@ public partial class FrmClassManager : Form
                 string deleteQuery = "DELETE FROM LOP WHERE MaLop = @MaLop";
                 using (SqlCommand command = new SqlCommand(deleteQuery, connection))
                 {
-                    command.Parameters.AddWithValue("@MaLop", maLop);
+                    command.Parameters.Add("@MaLop", System.Data.SqlDbType.VarChar, 20).Value = maLop;
                     int rowsAffected = command.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
@@ -249,7 +249,7 @@ public partial class FrmClassManager : Form
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Keyword", $"%{keyword}%");
+                    command.Parameters.Add("@Keyword", System.Data.SqlDbType.NVarChar, 100).Value = $"%{keyword}%";
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         System.Data.DataTable table = new System.Data.DataTable();

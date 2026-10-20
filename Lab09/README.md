@@ -193,7 +193,7 @@ private void DrawStudentCard(Graphics g, int width, int height)
             g.DrawRectangle(photoBorder, photoX, photoY, photoWidth, photoHeight);
         }
 
-        g.DrawImage(studentPhoto, photoX + 1, photoY + 1, photoWidth - 2, photoHeight - 2);
+        DrawImageFit(g, studentPhoto, new Rectangle(photoX + 1, photoY + 1, photoWidth - 2, photoHeight - 2));
     }
 
     // Student info (right side)
@@ -211,6 +211,9 @@ private void printDocument_PrintPage(object? sender, PrintPageEventArgs e)
     }
 }
 ```
+
+`DrawImageFit` tính vùng vẽ theo tỉ lệ gốc của ảnh và căn giữa trong khung ảnh,
+do đó ảnh không bị kéo méo ở cả preview và bản in.
 
 ### 10.4. Validation dữ liệu
 ```csharp

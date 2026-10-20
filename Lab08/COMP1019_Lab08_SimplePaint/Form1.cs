@@ -22,6 +22,13 @@ public partial class Form1 : Form
         backgroundImage = null;
     }
 
+    private static Image LoadImageCopy(string fileName)
+    {
+        using FileStream stream = File.OpenRead(fileName);
+        using Image source = Image.FromStream(stream);
+        return new Bitmap(source);
+    }
+
     private void canvas_Paint(object sender, PaintEventArgs e)
     {
         Graphics g = e.Graphics;
@@ -187,6 +194,7 @@ public partial class Form1 : Form
     private void btnClear_Click(object? sender, EventArgs e)
     {
         drawItems.Clear();
+        backgroundImage?.Dispose();
         backgroundImage = null;
         canvas.Invalidate();
     }
@@ -199,11 +207,17 @@ public partial class Form1 : Form
             saveDialog.Title = "Save Image as PNG";
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
-                Bitmap bitmap = new Bitmap(canvas.Width, canvas.Height);
-                canvas.DrawToBitmap(bitmap, new Rectangle(0, 0, canvas.Width, canvas.Height));
-                bitmap.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
-                bitmap.Dispose();
-                MessageBox.Show("Image saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    using Bitmap bitmap = new Bitmap(canvas.Width, canvas.Height);
+                    canvas.DrawToBitmap(bitmap, new Rectangle(0, 0, canvas.Width, canvas.Height));
+                    bitmap.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                    MessageBox.Show("Image saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
@@ -218,7 +232,9 @@ public partial class Form1 : Form
             {
                 try
                 {
-                    backgroundImage = Image.FromFile(openDialog.FileName);
+                    Image loadedImage = LoadImageCopy(openDialog.FileName);
+                    backgroundImage?.Dispose();
+                    backgroundImage = loadedImage;
                     canvas.Invalidate();
                 }
                 catch (Exception ex)
@@ -232,6 +248,12 @@ public partial class Form1 : Form
     private void menuExit_Click(object? sender, EventArgs e)
     {
         Application.Exit();
+    }
+
+    protected override void OnFormClosing(FormClosingEventArgs e)
+    {
+        backgroundImage?.Dispose();
+        base.OnFormClosing(e);
     }
 
     private void Form1_KeyDown(object? sender, KeyEventArgs e)
