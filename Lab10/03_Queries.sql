@@ -185,7 +185,7 @@ SELECT N'Query 12: Test lỗi khi nhập điểm ngoài khoảng 0 đến 10' AS
 -- Thử nhập điểm = 15
 BEGIN TRY
     INSERT INTO KETQUA (MaSV, MaMH, Diem)
-    VALUES ('SV001', 'MH001', 15);
+    VALUES ('SV001', 'MH003', 15);
     PRINT N'Thêm thành công (không nên xảy ra)';
 END TRY
 BEGIN CATCH
@@ -196,7 +196,7 @@ END CATCH;
 -- Thử nhập điểm = -5 (nhỏ hơn 0)
 BEGIN TRY
     INSERT INTO KETQUA (MaSV, MaMH, Diem)
-    VALUES ('SV001', 'MH001', -5);
+    VALUES ('SV001', 'MH003', -5);
     PRINT N'Thêm thành công (không nên xảy ra)';
 END TRY
 BEGIN CATCH

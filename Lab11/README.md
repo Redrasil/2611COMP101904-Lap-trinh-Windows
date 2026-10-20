@@ -101,11 +101,11 @@ INSERT INTO SINHVIEN(MaSV, HoTen, MaLop) VALUES
 Connection string đang sử dụng trên máy nhận:
 
 ```csharp
-// Cho SQL Server LocalDB
-private readonly string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=EduManagerDB;Integrated Security=True;";
+// SQL Server Express trên máy hiện tại
+private readonly string connectionString = "Server=.\\SQLEXPRESS;Database=EduManagerDB;Integrated Security=True;TrustServerCertificate=True;";
 
-// Hoặc cho SQL Server Express
-private readonly string connectionString = "Server=.\\SQLEXPRESS;Database=EduManagerDB;Integrated Security=True;";
+// Hoặc cho SQL Server LocalDB
+// private readonly string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=EduManagerDB;Integrated Security=True;";
 
 // Hoặc cho SQL Server đầy đủ
 private readonly string connectionString = "Server=YOUR_SERVER_NAME;Database=EduManagerDB;User Id=YOUR_USERNAME;Password=YOUR_PASSWORD;";

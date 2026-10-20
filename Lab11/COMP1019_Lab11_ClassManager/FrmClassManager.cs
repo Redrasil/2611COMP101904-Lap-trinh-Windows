@@ -6,7 +6,7 @@ public partial class FrmClassManager : Form
 {
     // Connection string - thay đổi theo cấu hình SQL Server của bạn
     // cho SQL Server LocalDB
-    private readonly string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=EduManagerDB;Integrated Security=True;";
+    private readonly string connectionString = "Server=.\\SQLEXPRESS;Database=EduManagerDB;Integrated Security=True;TrustServerCertificate=True;";
 
     // cho SQL Server Express
     // private readonly string connectionString = "Server=.\\SQLEXPRESS;Database=EduManagerDB;Integrated Security=True;";
