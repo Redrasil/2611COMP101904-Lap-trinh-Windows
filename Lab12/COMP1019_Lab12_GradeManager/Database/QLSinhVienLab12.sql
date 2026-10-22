@@ -1,0 +1,28 @@
+IF DB_ID(N'QLSinhVienLab12') IS NULL CREATE DATABASE QLSinhVienLab12;
+GO
+USE QLSinhVienLab12;
+GO
+IF OBJECT_ID('dbo.KETQUA', 'U') IS NOT NULL DROP TABLE dbo.KETQUA;
+IF OBJECT_ID('dbo.SINHVIEN', 'U') IS NOT NULL DROP TABLE dbo.SINHVIEN;
+IF OBJECT_ID('dbo.MONHOC', 'U') IS NOT NULL DROP TABLE dbo.MONHOC;
+IF OBJECT_ID('dbo.LOP', 'U') IS NOT NULL DROP TABLE dbo.LOP;
+CREATE TABLE LOP(MaLop nvarchar(20) PRIMARY KEY, TenLop nvarchar(100) NOT NULL);
+CREATE TABLE SINHVIEN(MaSV nvarchar(20) PRIMARY KEY, HoTen nvarchar(100) NOT NULL, NgaySinh date NULL, MaLop nvarchar(20) NOT NULL REFERENCES LOP(MaLop));
+CREATE TABLE MONHOC(MaMon nvarchar(20) PRIMARY KEY, TenMon nvarchar(100) NOT NULL, SoTinChi int NOT NULL CHECK (SoTinChi BETWEEN 1 AND 6));
+CREATE TABLE KETQUA(MaSV nvarchar(20) NOT NULL REFERENCES SINHVIEN(MaSV), MaMon nvarchar(20) NOT NULL REFERENCES MONHOC(MaMon), Diem decimal(4,2) NOT NULL CHECK (Diem BETWEEN 0 AND 10), GhiChu nvarchar(200) NULL, PRIMARY KEY(MaSV, MaMon));
+INSERT LOP VALUES (N'CNTT1', N'Công nghệ thông tin 1'), (N'CNTT2', N'Công nghệ thông tin 2');
+INSERT SINHVIEN VALUES (N'SV001', N'Nguyễn An', '2005-01-10', N'CNTT1'), (N'SV002', N'Trần Bình', '2005-02-20', N'CNTT1'), (N'SV003', N'Lê Chi', '2005-03-30', N'CNTT2');
+INSERT MONHOC VALUES (N'COMP1019', N'Lập trình trên Windows', 3), (N'DB101', N'Cơ sở dữ liệu', 3);
+GO
+CREATE OR ALTER PROCEDURE sp_Lop_GetAll AS SELECT MaLop, TenLop FROM LOP ORDER BY MaLop;
+GO
+CREATE OR ALTER PROCEDURE sp_MonHoc_GetAll AS SELECT MaMon, TenMon FROM MONHOC ORDER BY MaMon;
+GO
+CREATE OR ALTER PROCEDURE sp_KetQua_GetByLopMon @MaLop nvarchar(20), @MaMon nvarchar(20) AS
+SELECT sv.MaSV, sv.HoTen, kq.Diem, kq.GhiChu FROM SINHVIEN sv LEFT JOIN KETQUA kq ON kq.MaSV=sv.MaSV AND kq.MaMon=@MaMon WHERE sv.MaLop=@MaLop ORDER BY sv.MaSV;
+GO
+CREATE OR ALTER PROCEDURE sp_KetQua_Save @MaSV nvarchar(20), @MaMon nvarchar(20), @Diem decimal(4,2), @GhiChu nvarchar(200) AS
+MERGE KETQUA AS target USING (SELECT @MaSV MaSV, @MaMon MaMon) AS source ON target.MaSV=source.MaSV AND target.MaMon=source.MaMon
+WHEN MATCHED THEN UPDATE SET Diem=@Diem, GhiChu=@GhiChu
+WHEN NOT MATCHED THEN INSERT(MaSV,MaMon,Diem,GhiChu) VALUES(@MaSV,@MaMon,@Diem,@GhiChu);
+GO
