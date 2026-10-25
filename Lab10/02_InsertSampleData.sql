@@ -32,12 +32,12 @@ GO
 -- Mỗi sinh viên thuộc một lớp
 -- =============================================
 INSERT INTO SINHVIEN (MaSV, HoTen, NgaySinh, GioiTinh, MaLop) VALUES
-('SV001', N'Nguyễn Văn An', '2000-05-15', 'Nam', 'CNTT01'),
-('SV002', N'Tran Thị Bình', '2001-03-20', 'N', 'CNTT01'),
-('SV003', N'Lê Văn Cường', '2000-08-10', 'Nam', 'CNTT01'),
-('SV004', N'Phạm Thị Dung', '2001-12-05', 'N', 'CNTT02'),
-('SV005', N'Hoàng Văn Em', '2000-07-25', 'Nam', 'CNTT02'),
-('SV006', N'Ngô Thị Giang', '2001-09-30', 'N', 'KT01');
+('SV001', N'Nguyễn Văn An', '2000-05-15', N'Nam', 'CNTT01'),
+('SV002', N'Trần Thị Bình', '2001-03-20', N'Nữ', 'CNTT01'),
+('SV003', N'Lê Văn Cường', '2000-08-10', N'Nam', 'CNTT01'),
+('SV004', N'Phạm Thị Dung', '2001-12-05', N'Nữ', 'CNTT02'),
+('SV005', N'Hoàng Văn Em', '2000-07-25', N'Nam', 'CNTT02'),
+('SV006', N'Ngô Thị Giang', '2001-09-30', N'Nữ', 'KT01');
 GO
 
 -- =============================================
