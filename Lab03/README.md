@@ -52,19 +52,19 @@ dotnet run --project Lab03_QuanLySinhVienOOP/Lab03_QuanLySinhVienOOP.csproj
 Dưới đây là các hình ảnh kết quả chạy chương trình tương ứng với các tình huống kiểm tra:
 
 1. **Thêm sinh viên thành công:**
-   ![Thêm thành công](docs/screenshots/1_them_thanh_cong.png)
+   ![Thêm thành công](docs/screenshots/1.png)
 
 2. **Báo lỗi trùng mã sinh viên:**
-   ![Mã đã tồn tại](docs/screenshots/2_ma_da_ton_tai.png)
+   ![Mã đã tồn tại](docs/screenshots/2.png)
 
 3. **Báo lỗi điểm không hợp lệ:**
-   ![Điểm không hợp lệ](docs/screenshots/3_diem_khong_hop_le.png)
+   ![Điểm không hợp lệ](docs/screenshots/3.png)
 
 4. **Tìm kiếm sinh viên theo tên:**
-   ![Tìm theo tên](docs/screenshots/4_tim_kiem_theo_ten.png)
+   ![Tìm theo tên](docs/screenshots/4.png)
 
 5. **Thông báo khi xóa mã không tồn tại:**
-   ![Không tìm thấy mã](docs/screenshots/5_khong_tim_thay_ma.png)
+   ![Không tìm thấy mã](docs/screenshots/5.png)
 
 6. **Lọc danh sách sinh viên đạt:**
-   ![Lọc sinh viên đạt](docs/screenshots/6_loc_sinh_vien_dat.png)
+   ![Lọc sinh viên đạt](docs/screenshots/6.png)
