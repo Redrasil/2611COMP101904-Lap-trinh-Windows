@@ -46,3 +46,25 @@ Mở Terminal tại thư mục `Lab03` và thực hiện lệnh:
 ```bash
 dotnet run --project Lab03_QuanLySinhVienOOP/Lab03_QuanLySinhVienOOP.csproj
 ```
+
+## Hình ảnh minh họa
+
+Dưới đây là các hình ảnh kết quả chạy chương trình tương ứng với các tình huống kiểm tra:
+
+1. **Thêm sinh viên thành công:**
+   ![Thêm thành công](docs/screenshots/1_them_thanh_cong.png)
+
+2. **Báo lỗi trùng mã sinh viên:**
+   ![Mã đã tồn tại](docs/screenshots/2_ma_da_ton_tai.png)
+
+3. **Báo lỗi điểm không hợp lệ:**
+   ![Điểm không hợp lệ](docs/screenshots/3_diem_khong_hop_le.png)
+
+4. **Tìm kiếm sinh viên theo tên:**
+   ![Tìm theo tên](docs/screenshots/4_tim_kiem_theo_ten.png)
+
+5. **Thông báo khi xóa mã không tồn tại:**
+   ![Không tìm thấy mã](docs/screenshots/5_khong_tim_thay_ma.png)
+
+6. **Lọc danh sách sinh viên đạt:**
+   ![Lọc sinh viên đạt](docs/screenshots/6_loc_sinh_vien_dat.png)
