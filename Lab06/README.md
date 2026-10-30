@@ -178,3 +178,13 @@ public class Product
 & "C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\MSBuild.exe" "Lab06\ProductManager\ProductManager.csproj" /t:Build /p:Configuration=Debug
 ```
 File thực thi được tạo tại: `Lab06\ProductManager\bin\Debug\ProductManager.exe`.
+
+## 8. Hình ảnh minh họa chạy chương trình
+
+> Các ảnh chụp màn hình minh họa các bước kiểm thử chức năng được lưu trữ tại thư mục [`docs/screenshots/`](docs/screenshots/):
+
+1.![](docs/screenshots/1.png)
+
+2.![](docs/screenshots/2.png)
+
+3.![](docs/screenshots/3.png)
