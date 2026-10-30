@@ -132,3 +132,19 @@ dotnet build Lab04/Lab04_ProductManagement/Lab04_ProductManagement.csproj
 # Chạy ứng dụng console
 dotnet run --project Lab04/Lab04_ProductManagement/Lab04_ProductManagement.csproj
 ```
+
+## Hình ảnh minh họa
+
+Dưới đây là các hình ảnh kết quả chạy chương trình tương ứng với các tình huống kiểm tra:
+
+1. 
+   !(docs/screenshots/1.png)
+
+2. 
+   !(docs/screenshots/2.png)
+
+3. 
+   !(docs/screenshots/3.png)
+
+4. 
+   !(docs/screenshots/4.png)
