@@ -238,3 +238,19 @@ Hệ thống menu "Cửa sổ" cung cấp các lệnh sắp xếp layout cửa s
 & "C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\MSBuild.exe" "Lab07\ShopManagerMini\ShopManagerMini.csproj" /t:Build /p:Configuration=Debug
 ```
 File thực thi nằm tại: `Lab07\ShopManagerMini\bin\Debug\ShopManagerMini.exe`.
+
+## 7. Hình ảnh minh họa chạy chương trình
+
+> Các ảnh chụp màn hình minh họa các bước kiểm thử chức năng được lưu trữ tại thư mục [`docs/screenshots/`](docs/screenshots/):
+
+1.![](docs/screenshots/1.png)
+
+2.![](docs/screenshots/2.png)
+
+3.![](docs/screenshots/3.png)
+
+4.![](docs/screenshots/4.png)
+
+5.![](docs/screenshots/5.png)
+
+6.![](docs/screenshots/6.png)
