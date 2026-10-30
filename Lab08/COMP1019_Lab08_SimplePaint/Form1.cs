@@ -15,6 +15,11 @@ public partial class Form1 : Form
     public Form1()
     {
         InitializeComponent();
+
+        btnUndo.Click += btnUndo_Click;
+        btnClear.Click += btnClear_Click;
+        btnColor.Click += btnColor_Click;
+
         drawItems = new List<DrawItem>();
         currentPoints = new List<Point>();
         isDrawing = false;
