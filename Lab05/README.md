@@ -174,16 +174,16 @@ msbuild CourseRegistrationApp.sln /t:Build /p:Configuration=Release
 > Các ảnh chụp màn hình minh họa các bước kiểm thử chức năng được lưu trữ tại thư mục [`docs/screenshots/`](docs/screenshots/):
 
 1. **Giao diện khởi động mặc định**:
-   ![Giao diện khởi động](docs/screenshots/01_FormLoad.png)
+   ![Giao diện khởi động](docs/screenshots/01.png)
 
 2. **Kiểm tra nhập liệu (Validation cảnh báo rỗng)**:
-   ![Cảnh báo rỗng](docs/screenshots/02_Validation.png)
+   ![Cảnh báo rỗng](docs/screenshots/02.png)
 
 3. **Tính toán học phí động khi thay đổi khóa học và số tháng**:
-   ![Tính học phí](docs/screenshots/03_TinhHocPhi.png)
+   ![Tính học phí](docs/screenshots/03.png)
 
 4. **Phiếu đăng ký khóa học xuất thành công bằng MessageBox**:
-   ![Phiếu đăng ký](docs/screenshots/04_DangKyThanhCong.png)
+   ![Phiếu đăng ký](docs/screenshots/04.png)
 
 5. **Xác nhận thoát chương trình**:
-   ![Xác nhận thoát](docs/screenshots/05_XacNhanThoat.png)
+   ![Xác nhận thoát](docs/screenshots/05.png)
