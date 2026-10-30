@@ -52,3 +52,13 @@ dotnet run --project COMP1019_Lab09_StudentCard/COMP1019_Lab09_StudentCard.cspro
 | 7 | Mở **Print Preview** khi dữ liệu hợp lệ | Hiển thị bản xem trước có khung, tiêu đề, ảnh và thông tin sinh viên |
 | 8 | Bấm **In**, sau đó chọn máy in hoặc hủy `PrintDialog` | Cho phép chọn máy in khi xác nhận; hủy hộp thoại không làm ứng dụng lỗi |
 | 9 | Nhấn `F6` để làm mới form | Xóa dữ liệu nhập, xóa ảnh và đưa form về trạng thái ban đầu |
+
+## Hình ảnh minh họa chạy chương trình
+
+> Các ảnh chụp màn hình minh họa các bước kiểm thử chức năng được lưu trữ tại thư mục [`docs/screenshots/`](docs/screenshots/):
+
+1.![](docs/screenshots/1.png)
+
+2.![](docs/screenshots/2.png)
+
+3.![](docs/screenshots/3.png)
