@@ -45,3 +45,15 @@ dotnet run --project COMP1019_Lab08_SimplePaint/COMP1019_Lab08_SimplePaint.cspro
 - Dùng Undo, Clear, Ctrl + Z.
 - Mở một ảnh nền, lưu kết quả thành PNG.
 - Resize cửa sổ hoặc che canvas rồi kiểm tra các nét vẽ vẫn còn.
+
+## Hình ảnh minh họa chạy chương trình
+
+> Các ảnh chụp màn hình minh họa các bước kiểm thử chức năng được lưu trữ tại thư mục [`docs/screenshots/`](docs/screenshots/):
+
+1.![](docs/screenshots/1.png)
+
+2.![](docs/screenshots/2.png)
+
+3.![](docs/screenshots/3.png)
+
+4.![](docs/screenshots/4.png)
