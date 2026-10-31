@@ -6,10 +6,15 @@
 -- MSSV: 49.01.101.075
 -- =============================================
 
--- Xóa database nếu đã tồn tại
 USE master;
 GO
-DROP DATABASE IF EXISTS EduManagerDB;
+
+-- Ngắt mọi kết nối đang mở tới EduManagerDB để có thể xóa và tạo lại từ đầu
+IF EXISTS (SELECT * FROM sys.databases WHERE name = N'EduManagerDB')
+BEGIN
+    ALTER DATABASE EduManagerDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE EduManagerDB;
+END
 GO
 
 -- Tạo database EduManagerDB
@@ -51,7 +56,7 @@ GO
 -- Khóa chính: MaSV
 -- Khóa ngoại: MaLop (tham chiếu đến LOP)
 -- Mỗi sinh viên thuộc một lớp
--- Giới tính chỉ nhận 'Nam' hoặc 'N'
+-- Giới tính chỉ nhận 'Nam' hoặc 'Nữ'
 -- =============================================
 CREATE TABLE SINHVIEN (
     MaSV VARCHAR(20) PRIMARY KEY,
