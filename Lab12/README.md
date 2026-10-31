@@ -65,3 +65,15 @@ Trong `KetQuaDAL.SaveGrades(string maMon, DataTable grades)`:
 | 4 | Nhập điểm ngoài khoảng 0 - 10 | Nhập điểm `15` hoặc `-2` -> Bấm "Lưu tất cả" | Báo lỗi điểm không hợp lệ (0 - 10), hủy thao tác lưu. |
 | 5 | Nhập điểm không phải số | Nhập chữ `"abc"` vào ô Điểm | Báo lỗi định dạng điểm số, không cho phép lưu. |
 | 6 | Thử nghiệm Rollback khi lỗi | Giả lập lỗi ở dòng thứ 2 trong bảng 5 sinh viên | Toàn bộ 5 dòng đều không được lưu vào CSDL (Rollback 100%). |
+
+## 6. Hình ảnh minh họa chạy chương trình
+
+> Các ảnh chụp màn hình minh họa các bước kiểm thử chức năng được lưu trữ tại thư mục [`docs/screenshots/`](docs/screenshots/):
+
+1.![](docs/screenshots/1.png)
+
+2.![](docs/screenshots/2.png)
+
+3.![](docs/screenshots/3.png)
+
+4.![](docs/screenshots/4.png)
