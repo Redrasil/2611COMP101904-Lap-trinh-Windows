@@ -45,3 +45,23 @@
 | 6 | Tìm không thấy kết quả | Nhập từ khóa `"XYZ123"` | Bảng không có dòng nào, status hiển thị Tổng: 0. |
 | 7 | Bấm Thống kê | Bấm nút "Thống kê" | Hiển thị chi tiết số lượng SV và điểm TB từng lớp trên thanh trạng thái. |
 | 8 | Xuất file CSV | Bấm nút "Xuất file", lưu tên `BaoCaoSinhVien.csv` | File được tạo thành công, có tiêu đề cột và danh sách sinh viên đang lọc. |
+
+## 5. Hình ảnh minh họa chạy chương trình
+
+> Các ảnh chụp màn hình minh họa các bước kiểm thử chức năng được lưu trữ tại thư mục [`docs/screenshots/`](docs/screenshots/):
+
+1.![](docs/screenshots/1.png)
+
+2.![](docs/screenshots/2.png)
+
+3.![](docs/screenshots/3.png)
+
+4.![](docs/screenshots/4.png)
+
+5.![](docs/screenshots/5.png)
+
+6.![](docs/screenshots/6.png)
+
+7.![](docs/screenshots/7.png)
+
+8.![](docs/screenshots/8.png)
