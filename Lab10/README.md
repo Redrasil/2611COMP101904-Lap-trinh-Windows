@@ -47,3 +47,21 @@ Sau khi chạy hai file đầu, dữ liệu mẫu có:
 - TAIKHOAN: 2 dòng
 
 Trong Query 6, có thể xóa sinh viên chưa có dữ liệu điểm bằng câu lệnh `DELETE` có kiểm tra `LEFT JOIN`.
+
+## Hình ảnh minh họa chạy chương trình
+
+> Các ảnh chụp màn hình minh họa các bước kiểm thử chức năng được lưu trữ tại thư mục [`docs/screenshots/`](docs/screenshots/):
+
+1.![](docs/screenshots/1.png)
+
+2.![](docs/screenshots/2.png)
+
+3.![](docs/screenshots/3.png)
+
+4.![](docs/screenshots/4.png)
+
+5.![](docs/screenshots/5.png)
+
+6.![](docs/screenshots/6.png)
+
+7.![](docs/screenshots/7.png)
