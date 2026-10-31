@@ -19,3 +19,5 @@
 - [Lab 09: Thiết kế và in thẻ sinh viên (WinForms, GDI+, PrintDocument)](Lab09/README.md)
 - [Lab 10: Thiết kế CSDL EduManagerDB bằng SQL Server](Lab10/README.md)
 - [Lab 11: ADO.NET và CRUD với SQL Server (Quản lý lớp học)](Lab11/README.md)
+- [Lab 12: Data binding, stored procedure và transaction](Lab12/README.md)
+- [Lab 13: Báo cáo sinh viên bằng LINQ](Lab13/README.md)
