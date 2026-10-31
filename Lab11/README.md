@@ -55,3 +55,9 @@ dotnet run --project COMP1019_Lab11_ClassManager/COMP1019_Lab11_ClassManager.csp
 - `F5`: Xóa lớp.
 - `F6`: Tìm kiếm.
 - `F7`: Làm mới.
+
+## Hình ảnh minh họa chạy chương trình
+
+> Các ảnh chụp màn hình minh họa các bước kiểm thử chức năng được lưu trữ tại thư mục [`docs/screenshots/`](docs/screenshots/):
+
+1.![](docs/screenshots/1.png)
